@@ -11,7 +11,6 @@ const App = () => {
 
       {/* MAIN */}
       <div className="flex w-full">
-
         {/* LEFT SECTION */}
         <div
           className={`
@@ -21,9 +20,7 @@ const App = () => {
             md:${sidebar ? "w-[calc(100%-319px)]" : "w-full"}
           `}
         >
-          <div className="p-4">
-            left
-          </div>
+          <div className="p-4">left</div>
         </div>
 
         {/* DESKTOP SIDEBAR */}
@@ -36,18 +33,13 @@ const App = () => {
               transition-all duration-300
             `}
           >
-          
             {sidebar && <SidebarContent />}
           </div>
         </div>
       </div>
 
-     
       <div className={`md:hidden`}>
-        
-      
-
-        {/* mobile Sidebar panel */}
+        {/* Mobile Sidebar panel */}
         <div
           className={`
             fixed z-40 right-0 top-[70px] 

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const SidebarContent = ({ onClose }) => {
   return (
     <div className="p-4">
-     menu
+     sidebar
       
     </div>
   );
