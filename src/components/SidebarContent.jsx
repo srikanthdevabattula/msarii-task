@@ -9,7 +9,7 @@ import { BsInfoLg } from "react-icons/bs";
 
 const Sidebar = () => {
   return (
-    <div className="w-full bg-white md:h-full h-[90vh] p-4 flex flex-col">
+    <div className="w-full bg-white md:h-full h-[100svh] p-4 flex flex-col">
 
       {/* TOP SECTION */}
       <Workspaces />
