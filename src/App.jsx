@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Navbar from "./components/Navbar";
-import SidebarContent from "./components/SidebarContent"; // separate file for the actual sidebar content
+ // separate file for the actual sidebar content
+import GroupTable from "./components/MainComponents/GroupTable";
+import Sidebar from "./components/SidebarContent";
 
 const App = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -14,26 +16,29 @@ const App = () => {
         {/* LEFT SECTION */}
         <div
           className={`
-            bg-green-300
+           
             transition-all duration-300
             w-full
             md:${sidebar ? "w-[calc(100%-319px)]" : "w-full"}
           `}
         >
-          <div className="p-4">left</div>
+          <div className="p-4 bg-[#728cb982] h-full">
+
+            {/* <GroupTable/> */}
+          </div>
         </div>
 
         {/* DESKTOP SIDEBAR */}
         <div className={`hidden md:block transition-all duration-300`}>
           <div
             className={`
-              bg-red-400
+             
               h-[calc(100vh-90px)]
-              ${sidebar ? "w-[319px]" : "w-0 overflow-hidden"}
+              ${sidebar ? "w-[319px] overflow-auto " : "w-0 overflow-hidden"}
               transition-all duration-300
             `}
           >
-            {sidebar && <SidebarContent />}
+            {sidebar && <Sidebar />}
           </div>
         </div>
       </div>
@@ -48,8 +53,8 @@ const App = () => {
             ${sidebar ? "translate-x-0" : "translate-x-full"}
           `}
         >
-          <div className="w-full h-full bg-red-400 overflow-auto">
-            <SidebarContent onClose={() => setSidebar(false)} />
+          <div className="w-full h-full  overflow-auto">
+            <Sidebar onClose={() => setSidebar(false)} />
           </div>
         </div>
       </div>
