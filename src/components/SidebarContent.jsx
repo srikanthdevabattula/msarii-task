@@ -9,7 +9,7 @@ import { BsInfoLg } from "react-icons/bs";
 
 const Sidebar = () => {
   return (
-    <div className="w-full bg-white h-full p-4 flex flex-col">
+    <div className="w-full bg-white md:h-full h-[90vh] p-4 flex flex-col">
 
       {/* TOP SECTION */}
       <Workspaces />
@@ -30,7 +30,7 @@ const Sidebar = () => {
       </div>
 
       {/* FIXED BOTTOM FOOTER */}
-      <div className="flex sidbarend justify-between mt-auto mb-2 p-4 border-t">
+      <div className="flex sidbarend justify-between mt-auto  p-4 border-t">
         <GoSun className="w-[30px] h-[36px]" />
         <BsInfoLg className="w-[30px] h-[36px]" />
         <img src="right.svg" className="w-[30px] h-[36px]" alt="" />
