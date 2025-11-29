@@ -24,7 +24,7 @@ const App = () => {
     md:${sidebar ? "w-[calc(100%-319px)]" : "w-full"}
   `}
 >
-  <div className="pt-3 pr-3 bg-[#728cb982] h-[calc(100vh-90px)] overflow-x-auto scrollbar-hide">   {/* ⭐ MAIN scrolls */}
+  <div className="md:pt-3 pt-2 md:pr-3 bg-[#728cb982] h-[calc(100vh-90px)] overflow-x-auto scrollbar-hide">   {/* ⭐ MAIN scrolls */}
   
     <Main />
   </div>
