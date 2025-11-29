@@ -9,12 +9,9 @@ const Main = () => {
   const [data, setData] = useState(DATA);
   const [pdfModal, setPdfModal] = useState({ open: false, url: "" });
   const [hoverPeople, setHoverPeople] = useState(null);
-
-  const [loading, setLoading] = useState(true); // 🌟 NEW
-
+  const [loading, setLoading] = useState(true); 
   const scrollRef = useRef(null);
 
-  // Auto scroll to right on mount
   useEffect(() => {
     if (scrollRef.current) {
       const container = scrollRef.current;
@@ -22,7 +19,6 @@ const Main = () => {
     }
   }, []);
 
-  // Manual 3-second delay for skeleton
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);

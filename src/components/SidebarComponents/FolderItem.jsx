@@ -11,7 +11,6 @@ const FolderItem = ({ name, children, childClass }) => {
 
   return (
     <div>
-      {/* FOLDER HEADER */}
       <div
         onClick={() => setOpen(!open)}
         className={`flex items-center justify-between pr-2 py-1  relative top-0 ${childClass}  cursor-pointer  rounded-md`}
@@ -32,7 +31,6 @@ const FolderItem = ({ name, children, childClass }) => {
         </div>
       </div>
 
-      {/* CHILDREN */}
       {open && children && (
         <div
           className={`mr-4 border-r rounded-br-lg border-[#C4C4C4] mt-1 space-y-1 `}

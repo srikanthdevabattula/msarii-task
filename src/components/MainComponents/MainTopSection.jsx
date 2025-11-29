@@ -19,7 +19,6 @@ export default function MainTopSection() {
   return (
     <div className="w-full  pb-3 " >
 
-      {/* FIRST ROW */}
       <div className="flex flex-col items-end text-sm">
 
         <h2 className="flex text-xl my-2  text-[#121212]  font-semibold flex items-center gap-1">
@@ -44,10 +43,8 @@ export default function MainTopSection() {
       </div>
       <hr />
 
-      {/* SECOND ROW */}
       <div className="flex items-center justify-start gap-8 mt-3 text-[#595959] text-sm" dir="rtl">
 
-        {/* Filters */}
         <span className="cursor-pointer flex items-center gap-1 ">
             <CiFilter size={16} className="text-[#007BFF]"/>
 
@@ -83,7 +80,6 @@ export default function MainTopSection() {
           مجموعة 
         </span>
 
-        {/* Search */}
         <div className="relative">
           <input
             type="text"

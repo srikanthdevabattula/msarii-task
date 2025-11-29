@@ -16,7 +16,6 @@ const StatusBadge = ({ status, onChange }) => {
     demo: "تجريبي",
   };
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handler = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -43,7 +42,7 @@ const StatusBadge = ({ status, onChange }) => {
               key={key}
               className="px-3 py-2 hover:bg-gray-100 cursor-pointer"
               onClick={() => {
-                onChange(key); // send selected status back
+                onChange(key); 
                 setOpen(false);
               }}
             >

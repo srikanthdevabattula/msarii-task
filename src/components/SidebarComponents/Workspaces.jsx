@@ -15,24 +15,23 @@ const Workspaces = () => {
   return (
     <div className="sticky top-0 bg-white z-20 ">
       <div className="p-2">
-        {/* HEADER */}
         <div className="flex justify-end items-center gap-4 mr-3">
           <h2 className="text-xl font-semibold text-[#00C9A7]">
             Test Department
           </h2>
 
-          <div className="flex items-center justify-center w-[39px] h-[39px] 
-                          border border-[#00000084] rounded-full">
+          <div
+            className="flex items-center justify-center w-[39px] h-[39px] 
+                          border border-[#00000084] rounded-full"
+          >
             <img src="/sidebarlogo.svg" alt="logo" />
           </div>
         </div>
 
         <hr className="my-2 text-[#B2B2B2]" />
 
-        {/* WORKSPACE SELECTOR */}
         <WorkspaceSelector />
 
-        {/* ICON GROUP */}
         <div className="flex justify-center gap-4 mb-4 text-white">
           {iconList.map((item, index) => (
             <div

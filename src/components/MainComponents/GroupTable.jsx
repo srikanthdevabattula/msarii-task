@@ -18,7 +18,7 @@ const GroupTable = ({
     <div className="mb-8  p-4 ">
       <div
         className="flex items-center min-w-[1339px] w-full justify-end gap-2 mb-4 px-2"
-        style={{ color: colors[index] }} // dynamic color
+        style={{ color: colors[index] }} 
       >
         <GoChevronDown />
         <h3 className={`  right-0 font-semibold`}>{group.groupName}</h3>

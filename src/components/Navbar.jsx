@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { TbGridDots } from "react-icons/tb";
 import { FaBell } from "react-icons/fa";
 
-
 const Navbar = ({ setSidebar, sidebar }) => {
   return (
     <div className="h-[70px] md:h-[90px] flex justify-between items-center shadow-md">
@@ -33,7 +32,6 @@ const Navbar = ({ setSidebar, sidebar }) => {
       </div>
 
       <div className="flex items-center gap-[16px] mr-[16px]">
-        {/*  Toggle sidebar here */}
         <TbGridDots
           onClick={() => setSidebar((prev) => !prev)}
           className={`h-[30px] md:h-[36px] w-[30px] md:w-[40px] ${
