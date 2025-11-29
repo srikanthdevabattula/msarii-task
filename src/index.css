@@ -7,6 +7,15 @@
   scrollbar-width: none;
 }
 
-.scrollbar-hide{
-    scrollbar-width: none;
+.scrollbar-hide {
+  scrollbar-width: none;
 }
+
+th,
+td {
+  border: 1px solid #adc8e4;
+  
+}
+
+
+

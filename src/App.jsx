@@ -3,6 +3,8 @@ import Navbar from "./components/Navbar";
  // separate file for the actual sidebar content
 import GroupTable from "./components/MainComponents/GroupTable";
 import Sidebar from "./components/SidebarContent";
+import Main from "./components/Main";
+import GroupTableSkeleton from "./components/MainComponents/GroupTableSkeleton";
 
 const App = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -14,19 +16,21 @@ const App = () => {
       {/* MAIN */}
       <div className="flex w-full">
         {/* LEFT SECTION */}
-        <div
-          className={`
-           
-            transition-all duration-300
-            w-full
-            md:${sidebar ? "w-[calc(100%-319px)]" : "w-full"}
-          `}
-        >
-          <div className="p-4 bg-[#728cb982] h-full">
+       
+<div
+  className={`
+    transition-all duration-300
+    w-full min-w-0                // ⭐ MUST HAVE
+    md:${sidebar ? "w-[calc(100%-319px)]" : "w-full"}
+  `}
+>
+  <div className="pt-3 pr-3 bg-[#728cb982] h-[calc(100vh-90px)] overflow-x-auto scrollbar-hide">   {/* ⭐ MAIN scrolls */}
+  
+    <Main />
+  </div>
+</div>
 
-            {/* <GroupTable/> */}
-          </div>
-        </div>
+
 
         {/* DESKTOP SIDEBAR */}
         <div className={`hidden md:block transition-all duration-300`}>
