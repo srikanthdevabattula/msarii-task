@@ -6,7 +6,7 @@ const MainLayout = ({sidebar}) => {
      <div
           className={`
     transition-all duration-300
-    w-full min-w-0                // ⭐ MUST HAVE
+    w-full min-w-0               
     md:${sidebar ? "w-[calc(100%-319px)]" : "w-full"}
   `}
         >
