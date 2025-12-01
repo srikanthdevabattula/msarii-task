@@ -8,7 +8,7 @@ const App = () => {
   const [sidebar, setSidebar] = useState(false);
 
   return (
-    <div className="overflow-hidden min-h-screen">
+    <div className="overflow-hidden min-h-screen w-[100vw]" >
       <Navbar setSidebar={setSidebar} sidebar={sidebar} />
       <div className="flex w-full">
         <MainLayout sidebar={sidebar} />

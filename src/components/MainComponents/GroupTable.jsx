@@ -1,54 +1,131 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import TableRow from "./TableRow";
-import AddRow from "./AddRow";
+import ResizableTH from "./ResizableTH";
 import { GoChevronDown } from "react-icons/go";
+import AddRow from "./AddRow";
 
 const GroupTable = ({
-  index,
   group,
+  index,
+  registerScrollRef,
+  syncScroll,
+  columnWidths,
+  setColumnWidths,
   openPdf,
   updateStartDate,
   toggleCheck,
-  hoverPeople,
-  setHoverPeople,
-  updateStatus
+  updateStatus,
+  updatePeople,
+  updateCell,
 }) => {
   const colors = ["#FF5C5C", "#55A5FB", "#4EBA30", "#FF5CDC"];
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      registerScrollRef(scrollRef.current);
+    }
+  }, [registerScrollRef]);
+
   return (
-    <div className="mb-8  p-4 ">
-      <div
-        className="flex items-center min-w-[1339px] w-full justify-end gap-2 mb-4 px-2"
-        style={{ color: colors[index] }} 
+    <div className="w-full mb-24 mx-4">
+     
+      <div className="flex items-center justify-end gap-2 px-4 py-2 bg-white sticky top-0"
+       style={{ color: colors[index] }} 
       >
         <GoChevronDown />
-        <h3 className={`  right-0 font-semibold`}>{group.groupName}</h3>
-        <div className="">⋮</div>
+        <h3 className="font-semibold whitespace-nowrap">{group.groupName}</h3>
+        <div>⋮</div>
       </div>
 
-      <div className="w-full ">
-        <table className=" w-full min-w-[1339px] text-center table-auto "
-        style={{
-      borderCollapse: "separate",
-      borderSpacing: 0,
-      border: "1px solid #adc8e4",
-      borderRadius: "5px",
+     
+      <div
+        ref={scrollRef}
+        onScroll={syncScroll}
+        className="overflow-x-auto scrollbar-hide"
+      >
+        <table className="border-collapse w-max min-w-full mx-3"
+         style={{
+     
       
       borderRight: `5px solid ${colors[index]}`,
     }}
         >
           <thead>
-            <tr className="text-sm text-[#002145]">
-              <th className="px-4 py-3 w-[5%]">ملف</th>
-              <th className="px-4 py-3 w-[8%]">موقع</th>
-              <th className="px-4 py-3 w-[13%]">بريد إلكتروني</th>
-              <th className="px-4 py-3 w-[11%]">هاتف</th>
-              <th className="px-4 py-3 w-[12%]">الجدول الزمني</th>
-              <th className="px-4 py-3 w-[10%]">تاريخ البدء</th>
-              <th className="px-4 py-3 w-[12%]">حالة</th>
-              <th className="px-4 py-3 w-[6%]">الناس</th>
-              <th className="px-4 py-3 w-[5%]"> </th>
-              <th className="px-4 py-3 w-[13%]">مهمة</th>
-              <th className="px-4 py-3 w-[5%]"> </th>
+            <tr>
+              <ResizableTH
+                colKey="col1"
+                columnWidths={columnWidths}
+                setColumnWidths={setColumnWidths}
+              >
+                ملف
+              </ResizableTH>
+              <ResizableTH
+                colKey="col2"
+                columnWidths={columnWidths}
+                setColumnWidths={setColumnWidths}
+              >
+                موقع
+              </ResizableTH>
+              <ResizableTH
+                colKey="col3"
+                columnWidths={columnWidths}
+                setColumnWidths={setColumnWidths}
+              >
+                بريد
+              </ResizableTH>
+              <ResizableTH
+                colKey="col4"
+                columnWidths={columnWidths}
+                setColumnWidths={setColumnWidths}
+              >
+                هاتف
+              </ResizableTH>
+              <ResizableTH
+                colKey="col5"
+                columnWidths={columnWidths}
+                setColumnWidths={setColumnWidths}
+              >
+                جدول
+              </ResizableTH>
+              <ResizableTH
+                colKey="col6"
+                columnWidths={columnWidths}
+                setColumnWidths={setColumnWidths}
+              >
+                تاريخ
+              </ResizableTH>
+              <ResizableTH
+                colKey="col7"
+                columnWidths={columnWidths}
+                setColumnWidths={setColumnWidths}
+              >
+                حالة
+              </ResizableTH>
+              <ResizableTH
+                colKey="col8"
+                columnWidths={columnWidths}
+                setColumnWidths={setColumnWidths}
+              >
+                أشخاص
+              </ResizableTH>
+              <ResizableTH
+                colKey="col9"
+                columnWidths={columnWidths}
+                setColumnWidths={setColumnWidths}
+              ></ResizableTH>
+              <ResizableTH
+                colKey="col10"
+                columnWidths={columnWidths}
+                setColumnWidths={setColumnWidths}
+              >
+                مهمة
+              </ResizableTH>
+              <ResizableTH
+                colKey="col11"
+                columnWidths={columnWidths}
+                setColumnWidths={setColumnWidths}
+              ></ResizableTH>
             </tr>
           </thead>
 
@@ -61,13 +138,13 @@ const GroupTable = ({
                 openPdf={openPdf}
                 updateStartDate={updateStartDate}
                 toggleCheck={toggleCheck}
-                hoverPeople={hoverPeople}
-                setHoverPeople={setHoverPeople}
                 updateStatus={updateStatus}
+                updatePeople={updatePeople}
+                updateCell={updateCell}
+                columnWidths={columnWidths}
               />
             ))}
-
-            {<AddRow />}
+            <AddRow columnWidths={columnWidths} />
           </tbody>
         </table>
       </div>

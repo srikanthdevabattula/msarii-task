@@ -23,8 +23,8 @@ const Sidebar = () => {
       </div>
 
       <div className="flex sidbarend justify-between mt-auto  p-4 border-t">
-        <GoSun className="w-[30px] h-[36px]" />
-        <BsInfoLg className="w-[30px] h-[36px]" />
+        <GoSun className="w-[30px] h-[36px] hover:text-blue-300" />
+        <BsInfoLg className="w-[30px] h-[36px] hover:text-blue-300" />
         <img src="right.svg" className="w-[30px] h-[36px]" alt="" />
       </div>
     </div>

@@ -1,39 +1,91 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { AVAILABLE_PEOPLE } from "../../data";
 
-const PeopleCell = ({ people = [],groupId, setHoverPeople, hoverPeople, rowId }) => {
-  const count = people.length;
-const uniqueId = `${groupId}-${rowId}`;
+const PeopleCell = ({ people, groupId, rowId, updatePeople }) => {
+  const [open, setOpen] = useState(false);
+  const triggerRef = useRef(null);
+  const dropdownRef = useRef(null);
+  const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0 });
+
+  const selected = people;
+
+ 
+  useEffect(() => {
+    if (open && triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      setDropdownPos({
+        top: rect.bottom + 6, 
+        left: rect.left,
+      });
+    }
+  }, [open]);
+
+ 
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      const trigger = triggerRef.current;
+      const dropdown = dropdownRef.current;
+
+      
+      if (
+        trigger &&
+        !trigger.contains(e.target) &&
+        dropdown &&
+        !dropdown.contains(e.target)
+      ) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div className="flex items-center justify-center gap-2">
-      {count === 0 && <div className="text-gray-400 text-xs">—</div>}
+    <>
+     
+      <div className="relative flex items-center justify-center" ref={triggerRef}>
+        <img
+          src={selected?.avatar}
+          alt={selected?.name}
+          className="w-9 h-9 rounded-full cursor-pointer border"
+          onClick={() => setOpen((prev) => !prev)}
+        />
+      </div>
 
-      {count === 1 && (
-        <img src={people[0].avatar} alt={people[0].name} className="w-8 h-8 rounded-full" />
-      )}
-
-      {count > 1 && (
-        <div className="flex items-center relative">
-          <img src={people[0].avatar} alt={people[0].name} className="w-8 h-8 z-10 rounded-full border" />
+     
+      {open &&
+        createPortal(
           <div
-            className="relative right-2 z-1 text-xs px-2 py-2 border rounded-full cursor-pointer select-none"
-            onMouseEnter={() => setHoverPeople(uniqueId )}
-            onMouseLeave={() => setHoverPeople(null)}
+            ref={dropdownRef}
+            className="bg-white border shadow-md rounded-lg p-2 z-[9999] w-40 
+            max-h-[200px] overflow-y-auto"
+            style={{
+              position: "fixed",
+              top: dropdownPos.top,
+              left: dropdownPos.left,
+            }}
           >
-            +{count - 1}
-          </div>
+            <p className="text-xs text-gray-400 px-2 mb-1">Select Person</p>
 
-          {hoverPeople === uniqueId  && (
-            <div className="absolute z-30 mt-16 right-0  p-2 ">
-              <div className="flex gap-2">
-                {people.map((p, idx) => (
-                  <img key={idx} src={p.avatar} alt={p.name} title={p.name} className="w-8 h-8 rounded-full" />
-                ))}
+            {AVAILABLE_PEOPLE.map((p, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-2 px-2 py-1 hover:bg-gray-100 cursor-pointer rounded"
+                onClick={() => {
+                  updatePeople(groupId, rowId, p);
+                  setOpen(false);
+                }}
+              >
+                <img src={p.avatar} className="w-7 h-7 rounded-full" />
+                <span className="text-sm">{p.name}</span>
               </div>
-            </div>
-          )}
-        </div>
-      )}
-    </div>
+            ))}
+          </div>,
+          document.body
+        )}
+    </>
   );
 };
 

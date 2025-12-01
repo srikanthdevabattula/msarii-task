@@ -12,9 +12,9 @@ const AddRow = ({ groupId, addRow }) => {
       <td className="px-4 py-4"></td>
       <td className="px-4 py-4"></td>
       <td className="px-4 py-4"></td>
-      <td className="px-4 py-4">
+      <td className="px-4 py-4 text-center">
         <button
-          className="inline-flex items-center gap-2 px-3   text-black "
+          className="inline-flex text-center items-center gap-2 px-3   text-black "
           
         > إضافة صف
        

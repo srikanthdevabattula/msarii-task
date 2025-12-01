@@ -13,7 +13,7 @@ export const DATA = {
           schedule: "Aug 22 - Aug 22",
           startDate: "2025/08/22",
           status: "in-progress",
-          people: [{ name: "Arun", avatar: "https://i.pravatar.cc/40?img=1" }],
+          people: { name: "Arun", avatar: "https://i.pravatar.cc/40?img=1" },
           icon: "more",
           mission: "الحرب 1983",
           checked: false,
@@ -27,7 +27,7 @@ export const DATA = {
           schedule: "Aug 22 - Aug 22",
           startDate: "2025/08/22",
           status: "blocked",
-          people: [{ name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" }],
+          people: { name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" },
           icon: "more",
           mission: "العظيم غانسي",
           checked: false,
@@ -41,10 +41,7 @@ export const DATA = {
           schedule: "Aug 22 - Aug 22",
           startDate: "2025/08/22",
           status: "in-progress",
-          people: [
-            { name: "Nitin", avatar: "https://i.pravatar.cc/40?img=3" },
-            { name: "Joseph", avatar: "https://i.pravatar.cc/40?img=4" },
-          ],
+          people: { name: "Nitin", avatar: "https://i.pravatar.cc/40?img=3" },
           icon: "more",
           mission: "عالم شجاع جديد",
           checked: false,
@@ -52,6 +49,7 @@ export const DATA = {
       ],
       addRow: true,
     },
+
     {
       groupId: 2,
       groupName: "Group 2",
@@ -64,8 +62,8 @@ export const DATA = {
           phone: "+91 777226262",
           schedule: "Sep 12 - Sep 18",
           startDate: "2025/09/12",
-          status: "demo",
-          people: [{ name: "Ali", avatar: "https://i.pravatar.cc/40?img=5" }],
+          status: "new",
+          people: { name: "Ali", avatar: "https://i.pravatar.cc/40?img=5" },
           icon: "more",
           mission: "مهمة جديدة",
           checked: false,
@@ -79,7 +77,7 @@ export const DATA = {
           schedule: "Aug 22 - Aug 22",
           startDate: "2025/08/22",
           status: "blocked",
-          people: [{ name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" }],
+          people: { name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" },
           icon: "more",
           mission: "العظيم غانسي",
           checked: false,
@@ -93,10 +91,7 @@ export const DATA = {
           schedule: "Aug 22 - Aug 22",
           startDate: "2025/08/22",
           status: "in-progress",
-          people: [
-            { name: "Nitin", avatar: "https://i.pravatar.cc/40?img=3" },
-            { name: "Joseph", avatar: "https://i.pravatar.cc/40?img=4" },
-          ],
+          people: { name: "Nitin", avatar: "https://i.pravatar.cc/40?img=3" },
           icon: "more",
           mission: "عالم شجاع جديد",
           checked: false,
@@ -109,8 +104,8 @@ export const DATA = {
           phone: "+91 6253485225",
           schedule: "Aug 22 - Aug 22",
           startDate: "2025/08/22",
-          status: "demo",
-          people: [{ name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" }],
+          status: "new",
+          people: { name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" },
           icon: "more",
           mission: "العظيم غانسي",
           checked: false,
@@ -118,6 +113,7 @@ export const DATA = {
       ],
       addRow: true,
     },
+
     {
       groupId: 3,
       groupName: "Group 3",
@@ -130,12 +126,8 @@ export const DATA = {
           phone: "+90 33662225",
           schedule: "Jul 05 - Jul 11",
           startDate: "2025/07/05",
-          status: "demo",
-          people: [
-            { name: "Fahad", avatar: "https://i.pravatar.cc/40?img=6" },
-            { name: "Sara", avatar: "https://i.pravatar.cc/40?img=7" },
-            { name: "Noor", avatar: "https://i.pravatar.cc/40?img=8" },
-          ],
+          status: "completed",
+          people: { name: "Fahad", avatar: "https://i.pravatar.cc/40?img=6" },
           icon: "more",
           mission: "تقرير المشروع",
           checked: false,
@@ -149,7 +141,7 @@ export const DATA = {
           schedule: "Aug 22 - Aug 22",
           startDate: "2025/08/22",
           status: "blocked",
-          people: [{ name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" }],
+          people: { name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" },
           icon: "more",
           mission: "العظيم غانسي",
           checked: false,
@@ -157,6 +149,7 @@ export const DATA = {
       ],
       addRow: true,
     },
+
     {
       groupId: 4,
       groupName: "Group 4",
@@ -170,11 +163,12 @@ export const DATA = {
           schedule: "Oct 11 - Oct 15",
           startDate: "2025/10/11",
           status: "in-progress",
-          people: [{ name: "Omar", avatar: "https://i.pravatar.cc/40?img=9" }],
+          people: { name: "Omar", avatar: "https://i.pravatar.cc/40?img=9" },
           icon: "more",
           mission: "خطة العمل",
           checked: false,
-        }, {
+        },
+        {
           id: 2,
           pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
           location: "دبي",
@@ -182,15 +176,27 @@ export const DATA = {
           phone: "+91 6253485225",
           schedule: "Aug 22 - Aug 22",
           startDate: "2025/08/22",
-          status: "demo",
-          people: [{ name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" }],
+          status: "completed",
+          people: { name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" },
           icon: "more",
           mission: "العظيم غانسي",
-          checked: false
+          checked: false,
         },
-        
       ],
       addRow: true,
     },
   ],
 };
+
+
+export const AVAILABLE_PEOPLE = [
+  { name: "Arun", avatar: "https://i.pravatar.cc/40?img=1" },
+  { name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" },
+  { name: "Nitin", avatar: "https://i.pravatar.cc/40?img=3" },
+  { name: "Joseph", avatar: "https://i.pravatar.cc/40?img=4" },
+  { name: "Ali", avatar: "https://i.pravatar.cc/40?img=5" },
+  { name: "Fahad", avatar: "https://i.pravatar.cc/40?img=6" },
+  { name: "Sara", avatar: "https://i.pravatar.cc/40?img=7" },
+  { name: "Noor", avatar: "https://i.pravatar.cc/40?img=8" },
+  { name: "Omar", avatar: "https://i.pravatar.cc/40?img=9" }
+];
