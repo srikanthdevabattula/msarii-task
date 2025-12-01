@@ -178,10 +178,10 @@ const Main = () => {
 
       <div
         ref={bottomScrollRef}
-        className="sticky bottom-0 left-0 w-full h-5  scrollbar-bottom overflow-x-auto z-50"
+        className="sticky bottom-0 left-0 w-full h-5 bg-white scrollbar-bottom overflow-x-auto z-50"
         onScroll={syncFromBottom}
       >
-        <div style={{ width: totalTableWidth +100, height: 1 }} />
+        <div style={{ width: totalTableWidth + 70, height: 1 }} />
       </div>
 
       {pdfModal.open && <PdfModal url={pdfModal.url} onClose={closePdf} />}

@@ -28,7 +28,7 @@ const GroupTable = ({
   }, [registerScrollRef]);
 
   return (
-    <div className="w-full mb-24 mx-4">
+    <div className="w-full mb-24 mx-4 ">
      
       <div className="flex items-center justify-end gap-2 px-4 py-2 bg-white sticky top-0"
        style={{ color: colors[index] }} 
@@ -42,7 +42,7 @@ const GroupTable = ({
       <div
         ref={scrollRef}
         onScroll={syncScroll}
-        className="overflow-x-auto scrollbar-hide"
+        className="overflow-x-auto  scrollbar-hide"
       >
         <table className="border-collapse w-max min-w-full mx-3"
          style={{
