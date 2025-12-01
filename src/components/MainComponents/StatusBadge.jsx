@@ -96,7 +96,7 @@ const StatusBadge = ({ status, onChange }) => {
               />
             </div>
 
-            <div className="max-h-[160px] w-[150px] text-right overflow-y-auto">
+            <div className="max-h-[155px] w-[150px]  text-right overflow-y-auto">
               {options
                 .filter((o) =>
                   o.label.toLowerCase().includes(search.toLowerCase())
@@ -109,7 +109,7 @@ const StatusBadge = ({ status, onChange }) => {
                       setOpen(false);
                       setSearch("");
                     }}
-                    className={`px-3 py-2 mb-1 cursor-pointer rounded ${opt.color}`}
+                    className={`px-3 py-2 mb-[2px] cursor-pointer rounded ${opt.color}`}
                   >
                     {opt.label}
                   </div>
