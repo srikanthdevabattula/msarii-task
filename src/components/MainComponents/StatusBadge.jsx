@@ -15,7 +15,11 @@ const StatusBadge = ({ status, onChange }) => {
 
   const options = [
     { key: "new", label: "جديد", color: "bg-black text-white" },
-    { key: "in-progress", label: "قيد التنفيذ", color: "bg-[#FECF2E] text-black" },
+    {
+      key: "in-progress",
+      label: "قيد التنفيذ",
+      color: "bg-[#FECF2E] text-black",
+    },
     { key: "blocked", label: "معلق", color: "bg-[#FF5C5C] text-white" },
     { key: "completed", label: "مكتمل", color: "bg-[#1A8600] text-white" },
   ];
@@ -37,7 +41,6 @@ const StatusBadge = ({ status, onChange }) => {
     if (open) updatePosition();
   }, [open]);
 
-  
   useEffect(() => {
     const onScroll = () => {
       if (open) updatePosition();
@@ -46,7 +49,6 @@ const StatusBadge = ({ status, onChange }) => {
     return () => window.removeEventListener("scroll", onScroll, true);
   }, [open]);
 
- 
   useEffect(() => {
     const handler = (e) => {
       if (
@@ -63,11 +65,10 @@ const StatusBadge = ({ status, onChange }) => {
 
   return (
     <>
-    
       <button
         ref={buttonRef}
         onClick={() => setOpen(!open)}
-        className={`rounded-full w-full h-[28px] text-xs flex items-center justify-center cursor-pointer
+        className={`rounded-full w-full h-[28px]  text-xs flex items-center justify-center cursor-pointer
            ${selected ? selected.color : "bg-black text-white"}
         `}
       >
@@ -78,26 +79,24 @@ const StatusBadge = ({ status, onChange }) => {
         createPortal(
           <div
             ref={dropdownRef}
-            className="absolute z-[99999] bg-white shadow-md border rounded-md text-sm"
+            className="absolute z-[99999] bg-white w-[155px] flex flex-col items-center shadow-md border rounded-md text-sm"
             style={{
               top: position.top,
               left: position.left,
-              width: position.width,
+
               position: "fixed",
             }}
           >
-            
-            <div className="px-2 py-2">
+            <div className="px-2 py-2  w-[150px] bg-white text-right">
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full border px-2 py-1 rounded text-xs"
+                className="w-full border px-2 py-1  w-[150px]  text-right rounded text-xs"
                 placeholder="بحث الخيارات..."
               />
             </div>
 
-           
-            <div className="max-h-[250px] overflow-y-auto">
+            <div className="max-h-[160px] w-[150px] text-right overflow-y-auto">
               {options
                 .filter((o) =>
                   o.label.toLowerCase().includes(search.toLowerCase())
@@ -117,7 +116,7 @@ const StatusBadge = ({ status, onChange }) => {
                 ))}
             </div>
 
-            <div className="px-3 py-2 text-blue-600 text-xs cursor-pointer border-t">
+            <div className="px-3 py-2 text-blue-600 text-xs  w-[150px] text-right cursor-pointer border-t">
               ✎ تحرير التسميات
             </div>
           </div>,

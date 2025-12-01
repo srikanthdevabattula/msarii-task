@@ -11,7 +11,6 @@ const TableRow = ({
   updateStartDate,
   toggleCheck,
   updatePeople,
-  setHoverPeople,
   updateStatus,
   updateCell,
   columnWidths,
@@ -29,23 +28,27 @@ const TableRow = ({
   const convertToInput = (d) => (d ? d.replace(/\//g, "-") : "");
   const convertToDisplay = (d) => (d ? d.replace(/-/g, "/") : "");
 
+  const people = row.people || [];
+  const firstPerson = people[0];
+  const remainingCount = people.length > 1 ? people.length - 1 : 0;
+
   return (
     <tr className="border-t text-sm align-middle">
-
-     
       <td
         style={{ width: columnWidths.col1, maxWidth: columnWidths.col1 }}
-        className=" py-2 text-center align-middle"
+        className="py-2 text-center align-middle"
       >
-        <button onClick={() => openPdf(row.pdf)} className="inline-flex  items-center gap-2">
-          <PdfIcon className=''/>
+        <button
+          onClick={() => openPdf(row.pdf)}
+          className="inline-flex items-center gap-2"
+        >
+          <PdfIcon className="" />
         </button>
       </td>
 
-     
       <td
         style={{ width: columnWidths.col2, maxWidth: columnWidths.col2 }}
-        className= " cursor-pointer text-center truncate  py-2 align-middle"
+        className="cursor-pointer text-center truncate py-2 align-middle"
         onClick={() => setEditing({ ...editing, location: true })}
       >
         {editing.location ? (
@@ -69,7 +72,6 @@ const TableRow = ({
         )}
       </td>
 
-    
       <td
         style={{ width: columnWidths.col3, maxWidth: columnWidths.col3 }}
         className="cursor-pointer text-center truncate px-3 py-2 align-middle"
@@ -96,7 +98,6 @@ const TableRow = ({
         )}
       </td>
 
-    
       <td
         style={{ width: columnWidths.col4, maxWidth: columnWidths.col4 }}
         className="cursor-pointer text-center truncate px-3 py-2 align-middle"
@@ -123,7 +124,6 @@ const TableRow = ({
         )}
       </td>
 
-     
       <td
         style={{ width: columnWidths.col5, maxWidth: columnWidths.col5 }}
         className="cursor-pointer text-center truncate px-3 py-2 align-middle"
@@ -150,7 +150,6 @@ const TableRow = ({
         )}
       </td>
 
-     
       <td
         style={{ width: columnWidths.col6, maxWidth: columnWidths.col6 }}
         className="px-3 py-2 align-middle relative"
@@ -173,7 +172,6 @@ const TableRow = ({
         />
       </td>
 
-     
       <td
         style={{ width: columnWidths.col7, maxWidth: columnWidths.col7 }}
         className="px-3 py-2 align-middle"
@@ -184,20 +182,21 @@ const TableRow = ({
         />
       </td>
 
-     
       <td
         style={{ width: columnWidths.col8, maxWidth: columnWidths.col8 }}
-        className="px-3 py-2 align-middle"
+        className="px-3 py-2 align-middle text-center"
       >
-        <PeopleCell
-          people={row.people}
-          groupId={groupId}
-          rowId={row.id}
-          updatePeople={updatePeople}
-        />
+        <div className="flex items-center justify-center">
+          <PeopleCell
+            people={row.people}
+            groupId={groupId}
+            rowId={row.id}
+            updatePeople={updatePeople}
+            remainingCount={remainingCount}
+          />
+        </div>
       </td>
 
-    
       <td
         style={{ width: columnWidths.col9, maxWidth: columnWidths.col9 }}
         className="px-3 py-2 align-middle"
@@ -205,7 +204,6 @@ const TableRow = ({
         <IconCell icon={row.icon} />
       </td>
 
-     
       <td
         style={{ width: columnWidths.col10, maxWidth: columnWidths.col10 }}
         className="cursor-pointer text-center truncate px-3 py-2 align-middle"
@@ -231,8 +229,6 @@ const TableRow = ({
           row.mission
         )}
       </td>
-
-     
       <td
         style={{ width: columnWidths.col11, maxWidth: columnWidths.col11 }}
         className="text-center px-3 py-2 align-middle"
@@ -244,12 +240,13 @@ const TableRow = ({
             onChange={() => toggleCheck(groupId, row.id)}
             className="peer sr-only"
           />
-          <span className="w-4 h-4 rounded-full border-2 border-gray-400 
+          <span
+            className="w-4 h-4 rounded-full border-2 border-gray-400 
             peer-checked:border-gray-500 peer-checked:bg-blue-500
-            transition-all block"></span>
+            transition-all block"
+          ></span>
         </label>
       </td>
-
     </tr>
   );
 };

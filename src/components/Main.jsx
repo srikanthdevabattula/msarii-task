@@ -144,7 +144,7 @@ const Main = () => {
 
   return (
     <div className="relative h-[calc(100vh-100px)] bg-white ">
-      <div className="overflow-y-scroll h-full pb-16 scrollbar-left">
+      <div className="overflow-y-scroll h-full pb-34 scrollbar-left">
         <div className="sticky top-0 left-0 bg-white z-30 w-full p-4">
           <MainTopSection />
         </div>
@@ -178,7 +178,7 @@ const Main = () => {
 
       <div
         ref={bottomScrollRef}
-        className="sticky bottom-0 left-0 w-full h-5 bg-white scrollbar-bottom overflow-x-auto z-50"
+        className="sticky bottom-0 left-0 w-full h-2 bg-white scrollbar-bottom overflow-x-auto z-50"
         onScroll={syncFromBottom}
       >
         <div style={{ width: totalTableWidth + 70, height: 1 }} />
