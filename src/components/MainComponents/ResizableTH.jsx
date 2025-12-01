@@ -19,7 +19,7 @@ const ResizableTH = ({
     const handleMouseMove = (event) => {
       const delta = startX - event.clientX;
 
-      const sensitivity = 0.1;
+      const sensitivity = 0.03;
       const adjustedDelta = delta * sensitivity;
 
       setColumnWidths((prev) => {

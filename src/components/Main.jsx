@@ -149,7 +149,7 @@ const Main = () => {
           <MainTopSection />
         </div>
 
-        <div className="mr-3">
+        <div className="mr-3 ">
           {loading ? (
             <GroupTableSkeleton />
           ) : (
@@ -180,6 +180,7 @@ const Main = () => {
         ref={bottomScrollRef}
         className="sticky bottom-0 left-0 w-full h-2 bg-white scrollbar-bottom overflow-x-auto z-50"
         onScroll={syncFromBottom}
+        style={{ direction: "rtl" }}
       >
         <div style={{ width: totalTableWidth + 70, height: 1 }} />
       </div>

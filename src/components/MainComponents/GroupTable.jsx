@@ -39,12 +39,12 @@ const GroupTable = ({
       </div>
 
      
-      <div
-        ref={scrollRef}
-        onScroll={syncScroll}
-        className="overflow-x-auto  scrollbar-hide"
-        style={{ direction: "rtl" }}
-      >
+     <div
+  ref={scrollRef}
+  onScroll={syncScroll}
+  className="overflow-x-auto scrollbar-hide"
+  style={{ direction: "rtl" }}
+>
         <table className="border-collapse w-max min-w-full mx-3" 
          style={{
      
