@@ -6,48 +6,42 @@ export const DATA = {
       rows: [
         {
           id: 1,
-          pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+          pdf: "/dummy.pdf",
           location: "الهند",
           email: "Arun@gmail.com",
           phone: "+94 885662623",
           schedule: "Aug 22 - Aug 22",
           startDate: "2025/08/22",
           status: "in-progress",
-          people: [
-            { name: "Arun", avatar: "https://i.pravatar.cc/40?img=1" }
-          ],
+          people: [{ name: "Arun", avatar: "https://i.pravatar.cc/40?img=1" }],
           icon: "more",
           mission: "الحرب 1983",
           checked: false,
         },
         {
           id: 2,
-          pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+          pdf: "/dummy.pdf",
           location: "دبي",
           email: "Aman22@gmail.com",
           phone: "+91 6253485225",
           schedule: "Aug 22 - Aug 22",
           startDate: "2025/08/22",
           status: "blocked",
-          people: [
-            { name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" }
-          ],
+          people: [{ name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" }],
           icon: "more",
           mission: "العظيم غانسي",
           checked: false,
         },
         {
           id: 3,
-          pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+          pdf: "/dummy.pdf",
           location: "أمريكا",
           email: "Nitin34@gmail.com",
           phone: "+94 885662623",
           schedule: "Aug 22 - Aug 22",
           startDate: "2025/08/22",
           status: "in-progress",
-          people: [
-            { name: "Nitin", avatar: "https://i.pravatar.cc/40?img=3" }
-          ],
+          people: [{ name: "Nitin", avatar: "https://i.pravatar.cc/40?img=3" }],
           icon: "more",
           mission: "عالم شجاع جديد",
           checked: false,
@@ -62,64 +56,56 @@ export const DATA = {
       rows: [
         {
           id: 1,
-          pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+          pdf: "/dummy.pdf",
           location: "قطر",
           email: "test1@mail.com",
           phone: "+91 777226262",
           schedule: "Sep 12 - Sep 18",
           startDate: "2025/09/12",
           status: "new",
-          people: [
-            { name: "Ali", avatar: "https://i.pravatar.cc/40?img=5" }
-          ],
+          people: [{ name: "Ali", avatar: "https://i.pravatar.cc/40?img=5" }],
           icon: "more",
           mission: "مهمة جديدة",
           checked: false,
         },
         {
           id: 2,
-          pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+          pdf: "/dummy.pdf",
           location: "دبي",
           email: "Aman22@gmail.com",
           phone: "+91 6253485225",
           schedule: "Aug 22 - Aug 22",
           startDate: "2025/08/22",
           status: "blocked",
-          people: [
-            { name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" }
-          ],
+          people: [{ name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" }],
           icon: "more",
           mission: "العظيم غانسي",
           checked: false,
         },
         {
           id: 3,
-          pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+          pdf: "/dummy.pdf",
           location: "أمريكا",
           email: "Nitin34@gmail.com",
           phone: "+94 885662623",
           schedule: "Aug 22 - Aug 22",
           startDate: "2025/08/22",
           status: "in-progress",
-          people: [
-            { name: "Nitin", avatar: "https://i.pravatar.cc/40?img=3" }
-          ],
+          people: [{ name: "Nitin", avatar: "https://i.pravatar.cc/40?img=3" }],
           icon: "more",
           mission: "عالم شجاع جديد",
           checked: false,
         },
         {
           id: 4,
-          pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+          pdf: "/dummy.pdf",
           location: "دبي",
           email: "Aman22@gmail.com",
           phone: "+91 6253485225",
           schedule: "Aug 22 - Aug 22",
           startDate: "2025/08/22",
           status: "new",
-          people: [
-            { name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" }
-          ],
+          people: [{ name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" }],
           icon: "more",
           mission: "العظيم غانسي",
           checked: false,
@@ -134,32 +120,28 @@ export const DATA = {
       rows: [
         {
           id: 1,
-          pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+          pdf: "/dummy.pdf",
           location: "السعودية",
           email: "team@mail.com",
           phone: "+90 33662225",
           schedule: "Jul 05 - Jul 11",
           startDate: "2025/07/05",
           status: "completed",
-          people: [
-            { name: "Fahad", avatar: "https://i.pravatar.cc/40?img=6" }
-          ],
+          people: [{ name: "Fahad", avatar: "https://i.pravatar.cc/40?img=6" }],
           icon: "more",
           mission: "تقرير المشروع",
           checked: false,
         },
         {
           id: 2,
-          pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+          pdf: "/dummy.pdf",
           location: "دبي",
           email: "Aman22@gmail.com",
           phone: "+91 6253485225",
           schedule: "Aug 22 - Aug 22",
           startDate: "2025/08/22",
           status: "blocked",
-          people: [
-            { name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" }
-          ],
+          people: [{ name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" }],
           icon: "more",
           mission: "العظيم غانسي",
           checked: false,
@@ -174,32 +156,28 @@ export const DATA = {
       rows: [
         {
           id: 1,
-          pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+          pdf: "/dummy.pdf",
           location: "مصر",
           email: "egypt@mail.com",
           phone: "+20 62556222",
           schedule: "Oct 11 - Oct 15",
           startDate: "2025/10/11",
           status: "in-progress",
-          people: [
-            { name: "Omar", avatar: "https://i.pravatar.cc/40?img=9" }
-          ],
+          people: [{ name: "Omar", avatar: "https://i.pravatar.cc/40?img=9" }],
           icon: "more",
           mission: "خطة العمل",
           checked: false,
         },
         {
           id: 2,
-          pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+          pdf: "/dummy.pdf",
           location: "دبي",
           email: "Aman22@gmail.com",
           phone: "+91 6253485225",
           schedule: "Aug 22 - Aug 22",
           startDate: "2025/08/22",
           status: "completed",
-          people: [
-            { name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" }
-          ],
+          people: [{ name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" }],
           icon: "more",
           mission: "العظيم غانسي",
           checked: false,
@@ -210,7 +188,6 @@ export const DATA = {
   ],
 };
 
-
 export const AVAILABLE_PEOPLE = [
   { name: "Arun", avatar: "https://i.pravatar.cc/40?img=1" },
   { name: "Aman", avatar: "https://i.pravatar.cc/40?img=2" },
@@ -220,5 +197,5 @@ export const AVAILABLE_PEOPLE = [
   { name: "Fahad", avatar: "https://i.pravatar.cc/40?img=6" },
   { name: "Sara", avatar: "https://i.pravatar.cc/40?img=7" },
   { name: "Noor", avatar: "https://i.pravatar.cc/40?img=8" },
-  { name: "Omar", avatar: "https://i.pravatar.cc/40?img=9" }
+  { name: "Omar", avatar: "https://i.pravatar.cc/40?img=9" },
 ];

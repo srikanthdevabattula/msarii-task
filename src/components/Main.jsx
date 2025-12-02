@@ -6,32 +6,61 @@ import MainTopSection from "./MainComponents/MainTopSection";
 import GroupTableSkeleton from "./MainComponents/GroupTableSkeleton";
 
 const Main = () => {
-  const [data, setData] = useState(DATA);
+
+  const [data, setData] = useState(() => {
+    const saved = localStorage.getItem("table-data");
+    return saved ? JSON.parse(saved) : DATA;
+  });
+
+  const [extraColumns, setExtraColumns] = useState(() => {
+    const saved = localStorage.getItem("extra-columns");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  const [columnWidths, setColumnWidths] = useState(() => {
+    const saved = localStorage.getItem("column-widths");
+    return saved
+      ? JSON.parse(saved)
+      : {
+          col1: 90,
+          col2: 120,
+          col3: 200,
+          col4: 200,
+          col5: 200,
+          col6: 160,
+          col7: 180,
+          col8: 120,
+          col9: 60,
+          col10: 300,
+          col11: 80,
+        };
+  });
+
   const [pdfModal, setPdfModal] = useState({ open: false, url: "" });
   const [loading, setLoading] = useState(true);
 
   const tableScrollRefs = useRef([]);
   const bottomScrollRef = useRef(null);
 
-  const [columnWidths, setColumnWidths] = useState({
-    col1: 90,
-    col2: 120,
-    col3: 200,
-    col4: 200,
-    col5: 200,
-    col6: 160,
-    col7: 180,
-    col8: 120,
-    col9: 60,
-    col10: 300,
-    col11: 80,
-  });
-
   const totalTableWidth = Object.values(columnWidths).reduce(
     (t, w) => t + w,
     0
   );
 
+
+  useEffect(() => {
+    localStorage.setItem("table-data", JSON.stringify(data));
+  }, [data]);
+
+  useEffect(() => {
+    localStorage.setItem("extra-columns", JSON.stringify(extraColumns));
+  }, [extraColumns]);
+
+  useEffect(() => {
+    localStorage.setItem("column-widths", JSON.stringify(columnWidths));
+  }, [columnWidths]);
+
+ 
   const syncFromTable = (index) => (e) => {
     const left = e.target.scrollLeft;
 
@@ -55,13 +84,14 @@ const Main = () => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
+    const timer = setTimeout(() => setLoading(false), 600);
     return () => clearTimeout(timer);
   }, []);
 
   const openPdf = (url) => setPdfModal({ open: true, url });
   const closePdf = () => setPdfModal({ open: false, url: "" });
 
+  
   const updateStartDate = (groupId, rowId, newDate) => {
     setData((prev) => ({
       ...prev,
@@ -142,14 +172,77 @@ const Main = () => {
     }));
   };
 
+  const addRow = (groupId, missionText) => {
+    setData((prev) => ({
+      ...prev,
+      groups: prev.groups.map((g) => {
+        if (g.groupId !== groupId) return g;
+
+        const maxId =
+          g.rows.reduce((m, r) => (r.id > m ? r.id : m), 0) || g.rows.length;
+
+        const newRow = {
+          id: maxId + 1,
+          pdf: "/dummy.pdf",
+          location: "",
+          email: "",
+          phone: "",
+          schedule: "",
+          startDate: "",
+          status: "new",
+          people: [],
+          icon: "more",
+          mission: missionText || "",
+          checked: false,
+        };
+
+        extraColumns.forEach((col) => {
+          newRow[col.key] = "";
+        });
+
+        return {
+          ...g,
+          rows: [...g.rows, newRow],
+        };
+      }),
+    }));
+  };
+
+  const addColumn = () => {
+    const idx = extraColumns.length + 1;
+    const newKey = `colExtra${Date.now().toString(36)}${idx}`;
+    const newCol = { key: newKey, name: `New Column ${idx}` };
+
+    setColumnWidths((prev) => ({ ...prev, [newKey]: 150 }));
+    setExtraColumns((prev) => [newCol, ...prev]);
+
+    setData((prev) => ({
+      ...prev,
+      groups: prev.groups.map((g) => ({
+        ...g,
+        rows: g.rows.map((r) => ({
+          ...r,
+          [newKey]: "",
+        })),
+      })),
+    }));
+  };
+
+  const updateColumnName = (key, newName) => {
+    setExtraColumns((prev) =>
+      prev.map((c) => (c.key === key ? { ...c, name: newName } : c))
+    );
+  };
+
+ 
   return (
     <div className="relative h-[calc(100vh-100px)] bg-white ">
       <div className="overflow-y-scroll h-full pb-34 scrollbar-left">
         <div className="sticky top-0 left-0 bg-white z-30 w-full p-4">
-          <MainTopSection />
+          <MainTopSection addColumn={addColumn} />
         </div>
 
-        <div className="mr-3 ">
+        <div className="mr-3">
           {loading ? (
             <GroupTableSkeleton />
           ) : (
@@ -170,6 +263,9 @@ const Main = () => {
                 updateStatus={updateStatus}
                 updatePeople={updatePeople}
                 updateCell={updateCell}
+                onAddRow={addRow}
+                extraColumns={extraColumns}
+                updateColumnName={updateColumnName}
               />
             ))
           )}

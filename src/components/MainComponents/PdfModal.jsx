@@ -2,6 +2,7 @@ import React from "react";
 
 const PdfModal = ({ url, onClose }) => {
   if (!url) return null;
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div className="bg-white w-[95%] h-[90%] rounded shadow-lg overflow-hidden">
@@ -18,7 +19,8 @@ const PdfModal = ({ url, onClose }) => {
             </button>
           </div>
         </div>
-        <iframe src='dummy.pdf' title="pdf-view" className="w-full h-full" />
+        
+        <iframe src={url} title="pdf-view" className="w-full h-full" />
       </div>
     </div>
   );

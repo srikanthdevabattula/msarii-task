@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import PdfIcon from "./PdfIcon";
 import StatusBadge from "./StatusBadge";
 import PeopleCell from "./PeopleCell";
@@ -14,56 +14,87 @@ const TableRow = ({
   updateStatus,
   updateCell,
   columnWidths,
+  extraColumns = [],
 }) => {
-  const [editing, setEditing] = useState({
-    location: false,
-    email: false,
-    phone: false,
-    schedule: false,
-    mission: false,
-  });
-
+  const [editing, setEditing] = useState({});
   const hiddenDateInput = useRef(null);
+
+  
+  useEffect(() => {
+    setEditing((prev) => {
+      const newState = { ...prev };
+      extraColumns.forEach((col) => {
+        if (!(col.key in newState)) newState[col.key] = false;
+      });
+      return newState;
+    });
+  }, [extraColumns]);
 
   const convertToInput = (d) => (d ? d.replace(/\//g, "-") : "");
   const convertToDisplay = (d) => (d ? d.replace(/-/g, "/") : "");
 
+  const handleDynamicBlur = (colKey, e) => {
+    updateCell(groupId, row.id, colKey, e.target.value);
+    setEditing((prev) => ({ ...prev, [colKey]: false }));
+  };
+
   const people = row.people || [];
-  const firstPerson = people[0];
   const remainingCount = people.length > 1 ? people.length - 1 : 0;
 
   return (
     <tr className="border-t text-sm align-middle">
+
+      {extraColumns.map((col) => (
+        <td
+          key={col.key}
+          style={{
+            width: columnWidths[col.key],
+            maxWidth: columnWidths[col.key],
+          }}
+          className="cursor-pointer text-center truncate px-3 py-2"
+          onClick={() => setEditing((p) => ({ ...p, [col.key]: true }))}
+        >
+          {editing[col.key] ? (
+            <input
+              autoFocus
+              defaultValue={row[col.key] || ""}
+              className="border px-2 py-1 w-full text-center"
+              onBlur={(e) => handleDynamicBlur(col.key, e)}
+              onKeyDown={(e) => e.key === "Enter" && handleDynamicBlur(col.key, e)}
+            />
+          ) : (
+            row[col.key] || ""
+          )}
+        </td>
+      ))}
+
       <td
-        style={{ width: columnWidths.col1, maxWidth: columnWidths.col1 }}
+        style={{ width: columnWidths.col1 }}
         className="py-2 text-center align-middle"
       >
-        <button
-          onClick={() => openPdf(row.pdf)}
-          className="inline-flex items-center gap-2"
-        >
-          <PdfIcon className="" />
+        <button onClick={() => openPdf(row.pdf)} className="inline-flex items-center">
+          <PdfIcon />
         </button>
       </td>
 
       <td
-        style={{ width: columnWidths.col2, maxWidth: columnWidths.col2 }}
-        className="cursor-pointer text-center truncate py-2 align-middle"
-        onClick={() => setEditing({ ...editing, location: true })}
+        style={{ width: columnWidths.col2 }}
+        className="cursor-pointer text-center truncate py-2"
+        onClick={() => setEditing((p) => ({ ...p, location: true }))}
       >
         {editing.location ? (
           <input
             autoFocus
-            className="border px-2 py-1 w-[calc(100%-4px)] text-center"
             defaultValue={row.location}
+            className="border px-2 py-1 w-full text-center"
             onBlur={(e) => {
               updateCell(groupId, row.id, "location", e.target.value);
-              setEditing({ ...editing, location: false });
+              setEditing((p) => ({ ...p, location: false }));
             }}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 updateCell(groupId, row.id, "location", e.target.value);
-                setEditing({ ...editing, location: false });
+                setEditing((p) => ({ ...p, location: false }));
               }
             }}
           />
@@ -73,23 +104,23 @@ const TableRow = ({
       </td>
 
       <td
-        style={{ width: columnWidths.col3, maxWidth: columnWidths.col3 }}
-        className="cursor-pointer text-center truncate px-3 py-2 align-middle"
-        onClick={() => setEditing({ ...editing, email: true })}
+        style={{ width: columnWidths.col3 }}
+        className="cursor-pointer text-center truncate px-3 py-2"
+        onClick={() => setEditing((p) => ({ ...p, email: true }))}
       >
         {editing.email ? (
           <input
             autoFocus
-            className="border px-2 py-1 w-[calc(100%-4px)] text-center"
             defaultValue={row.email}
+            className="border px-2 py-1 w-full text-center"
             onBlur={(e) => {
               updateCell(groupId, row.id, "email", e.target.value);
-              setEditing({ ...editing, email: false });
+              setEditing((p) => ({ ...p, email: false }));
             }}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 updateCell(groupId, row.id, "email", e.target.value);
-                setEditing({ ...editing, email: false });
+                setEditing((p) => ({ ...p, email: false }));
               }
             }}
           />
@@ -99,23 +130,23 @@ const TableRow = ({
       </td>
 
       <td
-        style={{ width: columnWidths.col4, maxWidth: columnWidths.col4 }}
-        className="cursor-pointer text-center truncate px-3 py-2 align-middle"
-        onClick={() => setEditing({ ...editing, phone: true })}
+        style={{ width: columnWidths.col4 }}
+        className="cursor-pointer text-center truncate px-3 py-2"
+        onClick={() => setEditing((p) => ({ ...p, phone: true }))}
       >
         {editing.phone ? (
           <input
             autoFocus
-            className="border px-2 py-1 w-[calc(100%-4px)] text-center"
             defaultValue={row.phone}
+            className="border px-2 py-1 w-full text-center"
             onBlur={(e) => {
               updateCell(groupId, row.id, "phone", e.target.value);
-              setEditing({ ...editing, phone: false });
+              setEditing((p) => ({ ...p, phone: false }));
             }}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 updateCell(groupId, row.id, "phone", e.target.value);
-                setEditing({ ...editing, phone: false });
+                setEditing((p) => ({ ...p, phone: false }));
               }
             }}
           />
@@ -125,23 +156,23 @@ const TableRow = ({
       </td>
 
       <td
-        style={{ width: columnWidths.col5, maxWidth: columnWidths.col5 }}
-        className="cursor-pointer text-center truncate px-3 py-2 align-middle"
-        onClick={() => setEditing({ ...editing, schedule: true })}
+        style={{ width: columnWidths.col5 }}
+        className="cursor-pointer text-center truncate px-3 py-2"
+        onClick={() => setEditing((p) => ({ ...p, schedule: true }))}
       >
         {editing.schedule ? (
           <input
             autoFocus
-            className="border px-2 py-1 w-[calc(100%-4px)] text-center"
             defaultValue={row.schedule}
+            className="border px-2 py-1 w-full text-center"
             onBlur={(e) => {
               updateCell(groupId, row.id, "schedule", e.target.value);
-              setEditing({ ...editing, schedule: false });
+              setEditing((p) => ({ ...p, schedule: false }));
             }}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 updateCell(groupId, row.id, "schedule", e.target.value);
-                setEditing({ ...editing, schedule: false });
+                setEditing((p) => ({ ...p, schedule: false }));
               }
             }}
           />
@@ -150,13 +181,14 @@ const TableRow = ({
         )}
       </td>
 
+   
       <td
-        style={{ width: columnWidths.col6, maxWidth: columnWidths.col6 }}
-        className="px-3 py-2 align-middle relative"
+        style={{ width: columnWidths.col6 }}
+        className="px-3 py-2 relative text-center"
       >
         <div
-          className="cursor-pointer truncate flex items-center justify-center h-full w-full py-2"
-          onClick={() => hiddenDateInput.current.showPicker()}
+          className="cursor-pointer"
+          onClick={() => hiddenDateInput.current && hiddenDateInput.current.showPicker && hiddenDateInput.current.showPicker()}
         >
           {row.startDate || "Select date"}
         </div>
@@ -172,56 +204,49 @@ const TableRow = ({
         />
       </td>
 
-      <td
-        style={{ width: columnWidths.col7, maxWidth: columnWidths.col7 }}
-        className="px-3 py-2 align-middle"
-      >
+     
+      <td style={{ width: columnWidths.col7 }} className="text-center px-3 py-2">
         <StatusBadge
           status={row.status}
-          onChange={(newStatus) => updateStatus(groupId, row.id, newStatus)}
+          onChange={(value) => updateStatus(groupId, row.id, value)}
         />
       </td>
 
-      <td
-        style={{ width: columnWidths.col8, maxWidth: columnWidths.col8 }}
-        className="px-3 py-2 align-middle text-center"
-      >
-        <div className="flex items-center justify-center">
-          <PeopleCell
-            people={row.people}
-            groupId={groupId}
-            rowId={row.id}
-            updatePeople={updatePeople}
-            remainingCount={remainingCount}
-          />
-        </div>
+     
+      <td style={{ width: columnWidths.col8 }} className="text-center px-3 py-2">
+        <PeopleCell
+          people={row.people}
+          groupId={groupId}
+          rowId={row.id}
+          updatePeople={updatePeople}
+          remainingCount={remainingCount}
+        />
       </td>
 
-      <td
-        style={{ width: columnWidths.col9, maxWidth: columnWidths.col9 }}
-        className="px-3 py-2 align-middle"
-      >
+      {/* Icon */}
+      <td style={{ width: columnWidths.col9 }} className="text-center px-3 py-2">
         <IconCell icon={row.icon} />
       </td>
 
+     
       <td
-        style={{ width: columnWidths.col10, maxWidth: columnWidths.col10 }}
-        className="cursor-pointer text-center truncate px-3 py-2 align-middle"
-        onClick={() => setEditing({ ...editing, mission: true })}
+        style={{ width: columnWidths.col10 }}
+        className="cursor-pointer text-center px-3 py-2"
+        onClick={() => setEditing((p) => ({ ...p, mission: true }))}
       >
         {editing.mission ? (
           <input
             autoFocus
-            className="border px-2 py-1 w-[calc(100%-4px)] text-center"
             defaultValue={row.mission}
+            className="border px-2 py-1 w-full text-center"
             onBlur={(e) => {
               updateCell(groupId, row.id, "mission", e.target.value);
-              setEditing({ ...editing, mission: false });
+              setEditing((p) => ({ ...p, mission: false }));
             }}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 updateCell(groupId, row.id, "mission", e.target.value);
-                setEditing({ ...editing, mission: false });
+                setEditing((p) => ({ ...p, mission: false }));
               }
             }}
           />
@@ -229,10 +254,9 @@ const TableRow = ({
           row.mission
         )}
       </td>
-      <td
-        style={{ width: columnWidths.col11, maxWidth: columnWidths.col11 }}
-        className="text-center px-3 py-2 align-middle"
-      >
+
+    
+      <td style={{ width: columnWidths.col11 }} className="text-center px-3 py-2">
         <label className="relative cursor-pointer inline-flex items-center">
           <input
             type="checkbox"

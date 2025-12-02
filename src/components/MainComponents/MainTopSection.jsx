@@ -15,7 +15,7 @@ import { CiFilter } from "react-icons/ci";
 
 
 
-export default function MainTopSection() {
+export default function MainTopSection({addColumn}) {
   return (
     <div className="w-full  pb-3 " >
 
@@ -79,6 +79,21 @@ export default function MainTopSection() {
 
           مجموعة 
         </span>
+        <div
+      style={{
+        width: "60px",
+        minWidth: "60px",
+        textAlign: "center",
+      }}
+      className="absolute left-0"
+    >
+      <button
+        onClick={addColumn}
+        className="border rounded w-6 h-6 flex items-center justify-center"
+      >
+        +
+      </button>
+    </div>
 
         <div className="relative">
           <input

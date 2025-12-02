@@ -1,49 +1,40 @@
-import React from "react";
+import React, { useRef } from "react";
 
 const ResizableTH = ({
   children,
   colKey,
-  columnWidths,
+  columnWidths = {},
   setColumnWidths,
   minWidth = 80,
-  scrollRef, 
 }) => {
   const width = columnWidths[colKey] ?? minWidth;
+  const rafRef = useRef(null);
 
   const startResizing = (e) => {
     e.preventDefault();
     const startX = e.clientX;
+    const startWidth = columnWidths[colKey] ?? minWidth;
 
     document.body.style.userSelect = "none";
 
     const handleMouseMove = (event) => {
-      const delta = startX - event.clientX;
+      
+      const moved = startX - event.clientX;
 
-      const sensitivity = 0.03;
-      const adjustedDelta = delta * sensitivity;
+      const newWidth = Math.max(minWidth, Math.round(startWidth + moved));
 
-      setColumnWidths((prev) => {
-        const keys = Object.keys(prev);
-        const index = keys.indexOf(colKey);
-        const nextKey = keys[index + 1];
-
-        if (!nextKey) return prev;
-
-        const startWidthRight = prev[nextKey];
-        const newWidthRight = Math.max(
-          minWidth,
-          Math.round(startWidthRight + adjustedDelta)
-        );
-
-        return { ...prev, [nextKey]: newWidthRight };
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(() => {
+        setColumnWidths((prev = {}) => ({
+          ...prev,
+          [colKey]: newWidth,
+        }));
       });
-
-     if (scrollRef?.current) {
-        scrollRef.current.scrollLeft += adjustedDelta;
-      }
     };
 
     const stopResizing = () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", stopResizing);
       document.body.style.userSelect = "auto";
@@ -64,9 +55,10 @@ const ResizableTH = ({
     >
       <div className="px-4 py-3 text-sm whitespace-nowrap">{children}</div>
 
+    
       <div
         onMouseDown={startResizing}
-        className="absolute top-0 right-0 h-full w-2 cursor-col-resize"
+        className="absolute top-0 left-0 h-full w-2 cursor-col-resize"
       />
     </th>
   );

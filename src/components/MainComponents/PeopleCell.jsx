@@ -71,7 +71,7 @@ const PeopleCell = ({ people = [], groupId, rowId, updatePeople,remainingCount }
           <div
             className="w-9 h-9 flex items-center jus rounded-full bg-gray-200 cursor-pointer"
             onClick={() => setOpen((prev) => !prev)}
-          >+</div>
+          ></div>
         )}
       </div>
 

@@ -1,5 +1,3 @@
-
-
 import FolderItem from "./SidebarComponents/FolderItem";
 import FileItem from "./SidebarComponents/FileItem";
 import { folderData } from "../folderData";
