@@ -1,4 +1,4 @@
-// src/components/sidebar/Sidebar.jsx
+
 
 import FolderItem from "./SidebarComponents/FolderItem";
 import FileItem from "./SidebarComponents/FileItem";
